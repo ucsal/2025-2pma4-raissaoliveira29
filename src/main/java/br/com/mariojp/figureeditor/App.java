@@ -15,8 +15,20 @@ public class App {
 
             DrawingPanel panel = new DrawingPanel();
 
+            JPanel toolbar = new JPanel(new FlowLayout(FlowLayout.LEFT));
+            JButton colorBtn = new JButton("Cor...");
+            toolbar.add(colorBtn);
+
+           colorBtn.addActionListener(e -> {
+    Color chosen = JColorChooser.showDialog(frame, "Escolha uma cor", panel.getCurrentColor());
+    if (chosen != null) {
+        panel.setCurrentColor(chosen);
+    }
+});
+
             frame.setLayout(new BorderLayout());
-            frame.add(panel, BorderLayout.CENTER);
+            frame.add(toolbar, BorderLayout.NORTH);  
+            frame.add(panel, BorderLayout.CENTER);   
 
             frame.setSize(900, 600);
             frame.setLocationRelativeTo(null);
